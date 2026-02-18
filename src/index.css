@@ -1,0 +1,216 @@
+/* stylelint-disable at-rule-no-unknown */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@supports (color: oklch(0 0 0)) {
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+}
+
+@layer base {
+  :root {
+    /* Warm café color palette */
+    --background: 35 30% 96%;
+    --foreground: 25 30% 12%;
+
+    --card: 35 40% 99%;
+    --card-foreground: 25 30% 12%;
+
+    --popover: 35 40% 99%;
+    --popover-foreground: 25 30% 12%;
+
+    /* Rich coffee brown */
+    --primary: 25 55% 25%;
+    --primary-foreground: 35 30% 96%;
+
+    /* Warm cream */
+    --secondary: 35 35% 92%;
+    --secondary-foreground: 25 30% 20%;
+
+    /* Soft beige */
+    --muted: 35 25% 90%;
+    --muted-foreground: 25 15% 45%;
+
+    /* Warm amber accent */
+    --accent: 30 85% 50%;
+    --accent-foreground: 35 30% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 142 70% 35%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 35 25% 85%;
+    --input: 35 25% 88%;
+    --ring: 25 55% 25%;
+
+    --radius: 0.75rem;
+
+    /* Custom shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(25 30% 12% / 0.08);
+    --shadow-medium: 0 4px 16px -4px hsl(25 30% 12% / 0.12);
+    --shadow-lg: 0 8px 32px -8px hsl(25 30% 12% / 0.16);
+
+    --sidebar-background: 35 30% 96%;
+    --sidebar-foreground: 25 30% 20%;
+    --sidebar-primary: 25 55% 25%;
+    --sidebar-primary-foreground: 35 30% 96%;
+    --sidebar-accent: 35 35% 92%;
+    --sidebar-accent-foreground: 25 30% 20%;
+    --sidebar-border: 35 25% 85%;
+    --sidebar-ring: 25 55% 25%;
+  }
+
+  .dark {
+    --background: 25 25% 10%;
+    --foreground: 35 20% 92%;
+
+    --card: 25 22% 14%;
+    --card-foreground: 35 20% 92%;
+
+    --popover: 25 22% 14%;
+    --popover-foreground: 35 20% 92%;
+
+    --primary: 35 60% 65%;
+    --primary-foreground: 25 25% 10%;
+
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 35 20% 88%;
+
+    --muted: 25 18% 20%;
+    --muted-foreground: 35 15% 60%;
+
+    --accent: 30 85% 55%;
+    --accent-foreground: 25 25% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 60% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 25 18% 22%;
+    --input: 25 18% 22%;
+    --ring: 35 60% 65%;
+
+    --sidebar-background: 25 25% 10%;
+    --sidebar-foreground: 35 20% 88%;
+    --sidebar-primary: 35 60% 65%;
+    --sidebar-primary-foreground: 25 25% 10%;
+    --sidebar-accent: 25 20% 18%;
+    --sidebar-accent-foreground: 35 20% 88%;
+    --sidebar-border: 25 18% 22%;
+    --sidebar-ring: 35 60% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full hover:bg-primary/30 transition-colors;
+  }
+}
+
+@layer components {
+  .pos-button {
+    @apply flex flex-col items-center justify-center gap-1 p-4 rounded-xl 
+           bg-card border-2 border-border hover:border-primary/50 
+           hover:bg-secondary/50 transition-all duration-200 
+           active:scale-[0.98] cursor-pointer shadow-sm hover:shadow-md
+           min-h-[100px];
+  }
+
+  .pos-button-primary {
+    @apply pos-button bg-primary text-primary-foreground border-primary 
+           hover:bg-primary/90 hover:border-primary;
+  }
+
+  .pos-button-accent {
+    @apply pos-button bg-accent text-accent-foreground border-accent 
+           hover:bg-accent/90 hover:border-accent;
+  }
+
+  .pos-button-success {
+    @apply flex items-center justify-center gap-2 px-6 py-4 rounded-xl 
+           bg-success text-success-foreground font-semibold text-lg
+           hover:bg-success/90 transition-all duration-200 
+           active:scale-[0.98] cursor-pointer shadow-md hover:shadow-lg;
+  }
+
+  .order-item {
+    @apply flex items-center justify-between p-3 rounded-lg bg-secondary/50 
+           border border-border/50;
+  }
+
+  .category-tab {
+    @apply px-4 py-3 rounded-xl font-medium transition-all duration-200
+           text-muted-foreground hover:text-foreground hover:bg-secondary;
+  }
+
+  .category-tab-active {
+    @apply category-tab bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground;
+  }
+
+  .receipt-text {
+    font-family: 'JetBrains Mono', monospace;
+    @apply text-sm;
+  }
+
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-press {
+    @apply active:scale-[0.97] transition-transform duration-100;
+  }
+}
+
+/* Print styles for thermal receipt */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
