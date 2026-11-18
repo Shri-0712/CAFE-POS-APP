@@ -1,0 +1,30 @@
+// Top-level build file
+
+buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // ✅ Stable version (IMPORTANT)
+        classpath 'com.android.tools.build:gradle:8.0.2'
+
+        // Google services (keep if needed)
+        classpath 'com.google.gms:google-services:4.4.0'
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// ✅ Clean task (modern syntax)
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
